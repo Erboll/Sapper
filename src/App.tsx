@@ -1,24 +1,49 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import GameField from "./components/GameField/GameField";
+import Cell from "./components/Cell/Cell";
+import {useState} from "react";
+import Counter from "./components/Counter/Counter";
 
 function App() {
+
+  const cell = {hasItem:false, clicked:false,};
+  const arrayOfItems:typeof cell[] = [];
+  const createItems = () => {
+    for (let i = 0; i <= 35; i++) {
+      arrayOfItems.push(cell);
+    }
+    const randomIndex = Math.floor(Math.random() * arrayOfItems.length) + 1;
+    arrayOfItems[randomIndex].hasItem = true;
+    return arrayOfItems
+  }
+
+  const [items, setItems] = useState(createItems());
+  const [count, setCount] = useState(0)
+
+  const cellClick = (index:number) => {
+    const itemsCopy = [...items];
+    const itemCopy = {...items[index]};
+    itemCopy.clicked = true;
+    itemsCopy[index] = itemCopy;
+    setItems(itemsCopy)
+    setCount( count + 1)
+  }
+
+
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <GameField>
+        {items.map((some , index) => (
+          <Cell
+            cellClick={() => cellClick(index)}
+            key={Math.random()}
+            color={some.clicked}
+          />
+        ))}
+      </GameField>
+      <div>
+        <Counter count={count}/>
+      </div>
     </div>
   );
 }

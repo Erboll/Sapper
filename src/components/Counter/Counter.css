@@ -1,0 +1,12 @@
+.count {
+    width: 80px;
+    height: 24px;
+    display: inline-block;
+    border: 1px solid #282c34;
+    border-radius: 4px;
+    font-size: 18px;
+    position: absolute;
+    bottom: 90px;
+    left: 335px;
+    padding-left: 10px;
+}

@@ -1,0 +1,10 @@
+.cell {
+    display: inline-block;
+    width: 70px;
+    height: 70px;
+    background: #282c34;
+    margin: 2px;
+}
+.backColor {
+    background: white;
+}
