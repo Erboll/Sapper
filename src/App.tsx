@@ -6,8 +6,9 @@ import Counter from "./components/Counter/Counter";
 function App() {
 
   const cell = {hasItem:false, clicked:false,};
-  const arrayOfItems:typeof cell[] = [];
+
   const createItems = () => {
+    const arrayOfItems:typeof cell[] = [];
     for (let i = 0; i <= 35; i++) {
       arrayOfItems.push(cell);
     }
@@ -16,9 +17,9 @@ function App() {
     return arrayOfItems
   }
 
+
   const [items, setItems] = useState(createItems());
   const [count, setCount] = useState(0)
-
   const cellClick = (index:number) => {
     const itemsCopy = [...items];
     const itemCopy = {...items[index]};
@@ -26,9 +27,11 @@ function App() {
     itemsCopy[index] = itemCopy;
     setItems(itemsCopy)
     setCount( count + 1)
+
   }
-
-
+  const resetBtn = () => {
+    setItems(createItems)
+  }
 
   return (
     <div className="App">
@@ -44,6 +47,10 @@ function App() {
       <div>
         <Counter count={count}/>
       </div>
+      <button onClick={resetBtn}
+        style={{textAlign:"center" , position:"absolute", bottom:"50px", left:"355px"}}>
+        Reset
+      </button>
     </div>
   );
 }
